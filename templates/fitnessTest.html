@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+{% extends "layout.html" %}
+{% block head %}
+<head>
+    <meta charset="utf-8" />
+    <title>fitnessTestPage</title>
+</head>
+{% endblock %}
+{% block body %}
+<body>
+    <br>
+    <!--Introduction to page-->
+    <center> <h2> Fitness Test </h2></center>
+    <center> By filling out some basic information, we can gauge your readiness for certain trails, or even recommend some for you!</center>
+    <br>
+    <br>
+    <!-- <form add GET redirect /HOME>  -->
+    <center>
+        <!--Questions user answers to get values for algorithm-->
+        What is your age range?
+        <br>
+        <input type="radio" name="ageQ" value=0>11-30
+        <input type="radio" name="ageQ" value=2>31-45
+        <input type="radio" name="ageQ" value=3>46+
+        <br>
+        <br>
+
+        How many miles a week do you hike on average?
+        <br>
+        <input type="radio" name="milesQ" value=4>0
+        <input type="radio" name="milesQ" value=3>1-5
+        <input type="radio" name="milesQ" value=1>6-12
+        <input type="radio" name="milesQ" value=0>13+
+        <br>
+        <br>
+
+        How many hours a week do you exercise?
+        <br>
+        <input type="radio" name="hoursQ" value=4>1-2
+        <input type="radio" name="hoursQ" value=3>3-6
+        <input type="radio" name="hoursQ" value=2>7-9
+        <input type="radio" name="hoursQ" value=1>10+
+        <br>
+        <br>
+
+        Do you have any medical conditions, such as asthma, knee/hip pain, or anything else you believe would impair your ability to hike?
+        <br>
+        <input type="radio" name="medicalQ" value=5>Yes
+        <input type="radio" name="medicalQ" value=0>No
+        <br>
+        <br>
+        <!--Button that calls function to calculate fitness-->
+        <button type="button" onclick="fitnessCalculator()">
+            Test
+        </button>
+    </center>
+    <br>
+
+    <center>
+        <div id="result"> </div>
+        <br>
+        <form id="var_form" action="/" method="POST">
+            <input id="send_var" name="level" type="hidden" value="">
+        </form>
+    </center>
+
+    <script>
+        //function that adds answer values to find fitness level
+        function fitnessCalculator() {
+            var level = 0;
+
+            //creates variable for age question
+            var age = document.getElementsByName('ageQ');
+            //iterates through answers, if radio box checked, adds associated age value
+            for (i = 0; i < age.length; i++) {
+                if (age[i].checked)
+                    var ageVal = parseInt(age[i].value, 10);
+            }
+
+            var miles = document.getElementsByName('milesQ');
+            for (i = 0; i < miles.length; i++) {
+                if (miles[i].checked)
+                    var mileVal = parseInt(miles[i].value, 10);
+            }
+
+            var hours = document.getElementsByName('hoursQ');
+            for (i = 0; i < hours.length; i++) {
+                if (hours[i].checked)
+                    var hourVal = parseInt(hours[i].value, 10);
+            }
+
+            var medical = document.getElementsByName('medicalQ');
+            for (i = 0; i < medical.length; i++) {
+                if (medical[i].checked)
+                    var medVal = parseInt(medical[i].value, 10);
+            }
+
+            //combine answers values into total
+            var total = ageVal + mileVal + hourVal + medVal;
+
+            //sort level by total
+            
+            //BACKUP CALCULATOR INCASE CHELSEA NEEDS 5 LEVELS, swap comment blocks with line of code below
+            //if (total >= 13) {
+            if (total >= 10) {
+                level = "Beginner";
+            }
+            //if (total >= 10 && total <= 12) {
+            if (total <= 5) {
+                //level = "Intermediate-Beginner"
+                level = "Advanced";
+            }
+            //if (total >= 5 && total < 10) {
+            if (total >= 4 && total <= 11) {
+                level = "Intermediate";
+            }
+            //if (total >= 3 && total <= 4) {
+                //level = "Advanced-Intermediate";
+            //}
+            //if (total >= 1 && total <= 2) {
+                //level = "Advanced";
+            //}
+            document.getElementById("result").innerHTML
+                = "Your estimated hiking fitness is: " + level;
+            document.getElementById("send_var").value = level;
+            btn = document.createElement("input");
+            btn.type = "submit";
+            btn.value = "Confirm";
+            document.getElementById("var_form").appendChild(btn);
+        }
+    </script>
+
+
+</body>
+{% endblock %}
+</html>

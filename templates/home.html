@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <title>Hiking Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div id="homeAlign">
+    <h3 id="homeHead">Enter your location to find hiking trails near you!</h3>
+    <form id="form" action="/trail_List" method="POST">
+        <label id="placet" for="input">Zip code or address:</label>
+        <input id="placef" type="text" name="input"><br>
+        <label id="ranget" for="radius">Within how many miles:</label>
+        <input id="rangef" type="number" name="radius"><br>
+        <input id="subButton" type="submit" value="Find Trails">
+    </form>
+</div>
+
+{% endblock %}

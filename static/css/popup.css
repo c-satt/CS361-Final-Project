@@ -1,0 +1,24 @@
+/* Created for CS 361 by team "To Be Determined" */
+/* Chelsea Satterwhite, Adam Wheeler, Diane Nguyen, Colin Kasowski, and Nick Dal */
+
+/* The popup form - hidden by default */
+.popup-form {
+  display: none;
+  border: 3px solid #f1f1f1;
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Add a green background color to the cancel button */
+.btn-submit {
+  background-color: green;
+}
+
+/* Add a red background color to the cancel button */
+.btn-cancel {
+  background-color: red;
+}

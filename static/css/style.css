@@ -1,0 +1,21 @@
+/* Created for CS 361 by team "To Be Determined" */
+/* Chelsea Satterwhite, Adam Wheeler, Diane Nguyen, Colin Kasowski, and Nick Dal */
+
+div {
+    padding: 20px 20px 20px 20px;
+}
+
+/* styles for nav bar */
+.container {
+    padding: 0px 0px 0px 0px;
+}
+
+.navbar {
+    max-width: 1680px;
+}
+
+@media (min-width: 1200px) {
+    .container{
+        max-width: 1680px;
+    }
+}
